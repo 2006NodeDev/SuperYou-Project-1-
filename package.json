@@ -1,0 +1,32 @@
+{
+  "name": "superyou",
+  "version": "1.0.0",
+  "description": "A site for normal people and heros",
+  "main": "index.ts",
+  "scripts": {
+    "start": "nodemon --exec ts-node src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/2006NodeDev/SuperYou-Project-1-.git"
+  },
+  "author": "China Moxey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/2006NodeDev/SuperYou-Project-1-/issues"
+  },
+  "homepage": "https://github.com/2006NodeDev/SuperYou-Project-1-#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "pg": "^8.2.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.7",
+    "@types/express-session": "^1.17.0",
+    "nodemon": "^2.0.4",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.6"
+  }
+}
