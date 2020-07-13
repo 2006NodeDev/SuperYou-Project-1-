@@ -1,6 +1,7 @@
 import express,{Request,Response,NextFunction} from 'express'
 import {User} from '../models/User'
-import {getAllUsers,UserUpdate} from '../daos/user-daos'
+import {getAllUsers,UserUpdate, NewUser} from '../daos/user-daos'
+import { InputError } from '../errors/InputError'
 
 export let userRouter = express.Router()
 
@@ -47,6 +48,7 @@ userRouter.patch('/edit-profile',async (req:Request, res:Response, next:NextFunc
         changeUser.role = role || undefined
         try {
             let result = await UserUpdate(changeUser)
+            res.status(201).send("Update Reimbursement")
             res.json(result)
         } catch (e) {
             next(e)
@@ -55,5 +57,32 @@ userRouter.patch('/edit-profile',async (req:Request, res:Response, next:NextFunc
 }) 
 //Sign up
 userRouter.post('/signup',async(req:Request, res:Response, next:NextFunction) =>{
+    let{
+        username,
+        password,
+        firstName,
+        lastName,
+        email,
+        role
+       } = req.body;
 
+       if(!username||!password||!firstName||!lastName||!email||!role){
+           next(new InputError)
+       }else{
+           let newUser : User ={
+               userId:0,
+               username,
+               password,
+               firstName,
+               lastName,
+               email,
+               role}
+         try{
+             let submit = await NewUser(newUser)
+             res.status(201).send("Welcome to Super You")
+             res.json(submit)
+         }catch(e){
+             next(e)
+         }
+       }
 })
