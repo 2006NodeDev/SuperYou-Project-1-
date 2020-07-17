@@ -6,8 +6,9 @@ import {superyoulogin} from '../remote/SuperYou-api/superyoulogin'
 export const LoginComponent:FunctionComponent<any> =(props) =>{
     //username and a password 
 
-    const[username, changeUsername] = useState(' ')
-    const [password, changePassword] = useState(' ')
+    const[username, changeUsername] = useState('')
+    const [password, changePassword] = useState('')
+    const [currentUser, changeCurrentUser] = useState(null)
 
     const updatePassword = (event:any)=> {//get callback for events
         event.preventDefault() //stop default behavior of the event 
@@ -17,17 +18,18 @@ export const LoginComponent:FunctionComponent<any> =(props) =>{
         event.preventDefault()
         changeUsername(event.currentTarget.value)
     }
-    const loginSubmit = (e:SyntheticEvent) =>{
+    const loginSubmit = async (e:SyntheticEvent) =>{
         e.preventDefault()
-        superyoulogin(username, password)
+        let res = await superyoulogin(username, password)
+        changeCurrentUser(res)
         changePassword('')
     }
     return(
         <div>
             <form autoComplete="off" onSubmit={loginSubmit}>
-            <TextField id="outlined-basic" label="Username" variant="outlined" value={username} onChange={updateUsername} /><br/><br />
-            <TextField id="outlined-basic" type="password" label="Password" variant="outlined" value={password} onChange={updatePassword}/><br /><br />
-            <Button type="submit" variant="outlined" color="primary" href="#outlined-buttons">Login</Button>
+            <TextField id="outlined-username" label="Username" variant="outlined" value={username} onChange={updateUsername} /><br/><br />
+            <TextField id="outlined-pass" type="password" label="Password" variant="outlined" value={password} onChange={updatePassword}/><br /><br />
+            <Button type="submit" variant="outlined" color="primary">Login</Button>
             </form>
         </div>
     )

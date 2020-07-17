@@ -4,12 +4,16 @@ import {LoginError} from './errors/LoginError'
 import { userRouter } from './routers/user-router';
 import { loggingMiddleware } from './middleware/logging-middleware';
 import { sessionMiddleware } from './middleware/session-middleware';
+import { corsFilter } from './middleware/cors-filter';
 
 const app = express();
 
 app.use(express.json())//middleware
 app.use(loggingMiddleware)//custom middleware for logging
+//make sure the request is allowed 
+app.use(corsFilter)
 app.use(sessionMiddleware)//custom middleware for session
+
 app.use('/users',userRouter)
 
 app.post('/login',async (req:Request,res:Response,next:NextFunction) =>{
@@ -17,7 +21,7 @@ app.post('/login',async (req:Request,res:Response,next:NextFunction) =>{
     let password = req.body.password
 
         if(!username || !password){
-            throw new LoginError()
+            next(new LoginError()) 
         }else{
             try{
                 let user = await getUsernameAndPassword(username, password)
