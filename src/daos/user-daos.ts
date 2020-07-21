@@ -110,7 +110,7 @@ export async function NewUser(signup:User):Promise<User>{
         client = await connectionPool.connect() //gives you a promise, so you take it out of the stack to prevent blocking
         
         let result:QueryResult = await client.query(`insert into superyoudb."users" ("username", "password", "firstname", "lastname", "email")
-                                                        values ($1, $2, $3, $4, $5, $6, $7, $8) returning "userid"` , [signup.username, signup.password, signup.firstName, signup.lastName, 
+                                                        values ($1, $2, $3, $4, $5) returning "userid"` , [signup.username, signup.password, signup.firstName, signup.lastName, 
                                                             signup.email])
         
         signup.userId = result.rows[0].userId

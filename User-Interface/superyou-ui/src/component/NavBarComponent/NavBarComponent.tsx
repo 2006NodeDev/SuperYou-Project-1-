@@ -1,13 +1,14 @@
 import React, { FunctionComponent } from 'react'
 import Button from '@material-ui/core/Button'
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import MenuIcon from '@material-ui/icons/Menu';
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import Typography from '@material-ui/core/Typography'
+import IconButton from '@material-ui/core/IconButton'
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
+import MenuIcon from '@material-ui/icons/Menu'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
+import {Link} from 'react-router-dom'
 //JSS 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -44,9 +45,9 @@ export const NavBarComponent:FunctionComponent<any> = (props) =>{
                 keepMounted
                 open={Boolean(anchorEl)}
                 onClose={handleClose}>
-                    <MenuItem onClick={handleClose}>Home</MenuItem>
-                    <MenuItem onClick={handleClose}>My Profile</MenuItem>
-                    <MenuItem onClick={handleClose}>Logout</MenuItem>
+                    <MenuItem onClick={handleClose}><Link to = '/'>Home</Link></MenuItem>
+                    <MenuItem onClick={handleClose}><Link to = '/'>My Profile</Link></MenuItem>
+                    <MenuItem onClick={handleClose}><Link to = '/'>Social</Link></MenuItem>
             </Menu>
           <Typography variant="h6" className={classes.title}>
             SUPER YOU

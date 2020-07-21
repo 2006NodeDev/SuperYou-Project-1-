@@ -1,7 +1,7 @@
 import React, {FunctionComponent, useState, SyntheticEvent} from 'react'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
-import {superyoulogin} from '../remote/SuperYou-api/superyoulogin'
+import {superyoulogin} from '../../remote/SuperYou-api/superyoulogin'
 
 export const LoginComponent:FunctionComponent<any> =(props) =>{
     //username and a password 

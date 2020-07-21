@@ -15,7 +15,7 @@ userRouter.get('/', async(req:Request,res:Response,next:NextFunction)=>{
     }
 })
 //update your account, you should only be able to update if you are a admin or if you are this specific user
-userRouter.patch('/edit-profile',async (req:Request, res:Response, next:NextFunction)=>{
+userRouter.patch('/editprofile',async (req:Request, res:Response, next:NextFunction)=>{
     let { 
         userId,
         username,
@@ -48,7 +48,7 @@ userRouter.patch('/edit-profile',async (req:Request, res:Response, next:NextFunc
         changeUser.role = role || undefined
         try {
             let result = await UserUpdate(changeUser)
-            res.status(201).send("Update Reimbursement")
+            res.status(201).send("Updated User")
             res.json(result)
         } catch (e) {
             next(e)
@@ -86,3 +86,4 @@ userRouter.post('/signup',async(req:Request, res:Response, next:NextFunction) =>
          }
        }
 })
+//create a logout DELETE verb
