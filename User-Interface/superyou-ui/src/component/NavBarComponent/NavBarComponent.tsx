@@ -21,6 +21,18 @@ const useStyles = makeStyles((theme: Theme) =>
     title: {
       flexGrow: 1,
     },
+    typography: {
+      color: '#FEDBC4',
+      padding: theme.spacing(1),
+      fontFamily: 'monospace',
+      fontSize: 18
+    },
+    Menu:{
+      color:'#FEDBC4'
+    },
+    AppBar:{
+      color:'#001131'
+    }
   }),
 );
 
@@ -45,9 +57,9 @@ export const NavBarComponent:FunctionComponent<any> = (props) =>{
                 keepMounted
                 open={Boolean(anchorEl)}
                 onClose={handleClose}>
-                    <MenuItem onClick={handleClose}><Link to = '/'>Home</Link></MenuItem>
+                    <MenuItem onClick={handleClose}><Link to = '/home'>Home</Link></MenuItem>
                     <MenuItem onClick={handleClose}><Link to = '/'>My Profile</Link></MenuItem>
-                    <MenuItem onClick={handleClose}><Link to = '/'>Social</Link></MenuItem>
+                    <MenuItem onClick={handleClose}><Link to = '/social'>Social</Link></MenuItem>
             </Menu>
           <Typography variant="h6" className={classes.title}>
             SUPER YOU
